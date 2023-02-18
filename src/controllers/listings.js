@@ -1,4 +1,4 @@
-const { Sequelize, listings } = require("../db/models");
+const { listings } = require("../db/models");
 
 module.exports = {
   // tested and working
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   //not yet tested, just putting here first
-  async getHomepageListings(req, res) {
+  async getWelcomePageListings(req, res) {
     const homepageListings = await listings.findAll({ limit: 4 });
     return res.json(homepageListings);
   },
