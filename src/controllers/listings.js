@@ -21,7 +21,7 @@ module.exports = {
 
   //not yet tested, just putting here first
   async getHomepageListings(req, res) {
-    const homepageListings = await listings.findAll({limit: 4});
+    const homepageListings = await listings.findAll({ limit: 4 });
     return res.json(homepageListings);
   },
   async deleteListing(req, res) {
