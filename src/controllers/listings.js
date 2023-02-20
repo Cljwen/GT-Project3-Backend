@@ -65,4 +65,13 @@ module.exports = {
     );
     return res.json(editedData);
   },
+
+  // async getListingsByCategory(req, res) {
+  //   const categoryListings = await listings.findAll({
+  //     where: {
+  //       category: req.query.category,
+  //     },
+  //   });
+  //   return res.json(categoryListings);
+  // },
 };

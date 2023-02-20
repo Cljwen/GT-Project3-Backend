@@ -6,11 +6,13 @@ const listingsRouter = Router();
 
 //Only the welcome page no need auth
 listingsRouter.get("/", listingsController.getWelcomePageListings);
+// listingsRouter.get("/", listingsController.getListingsByCategory);
 
 //everything below requires auth
 listingsRouter.use(authMiddleware);
 listingsRouter.get("/listings", listingsController.getAllListings);
 listingsRouter.get("/:user_id/profile", listingsController.getUserListings);
+
 listingsRouter.get(
   "/:user_id/listings/:listing_id",
   listingsController.getOneListing
