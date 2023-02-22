@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       password: {
-        allowNull: false,
+        defaultValue: "managed by auth0",
         type: Sequelize.STRING,
       },
       address: {
@@ -64,6 +64,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('users');
-  }
+    await queryInterface.dropTable("users");
+  },
 };
