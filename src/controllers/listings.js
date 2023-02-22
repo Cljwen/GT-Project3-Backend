@@ -21,7 +21,9 @@ module.exports = {
 
   //not yet tested, just putting here first
   async getWelcomePageListings(req, res) {
-    const homepageListings = await listings.findAll({ limit: 4 });
+    const homepageListings = await listings.findAll({
+      limit: 4,
+    });
     return res.json(homepageListings);
   },
   async deleteListing(req, res) {
@@ -65,4 +67,13 @@ module.exports = {
     );
     return res.json(editedData);
   },
+
+  // async getListingsByCategory(req, res) {
+  //   const categoryListings = await listings.findAll({
+  //     where: {
+  //       category: req.query.category,
+  //     },
+  //   });
+  //   return res.json(categoryListings);
+  // },
 };
