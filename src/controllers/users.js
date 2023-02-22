@@ -21,6 +21,14 @@ module.exports = {
     });
     return res.json(user);
   },
+  async getUserByEmail(req, res) {
+    const user = await users.findOne({
+      where: {
+        email: req.params.email,
+      },
+    });
+    return res.json(user);
+  },
   async getAllUsers(req, res) {
     const retrievedUsers = await users.findAll();
     return res.json(retrievedUsers);
