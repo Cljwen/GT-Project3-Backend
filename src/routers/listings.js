@@ -6,7 +6,7 @@ const listingsRouter = Router();
 
 //Only the welcome page no need auth
 listingsRouter.get("/", listingsController.getWelcomePageListings);
-// listingsRouter.get("/", listingsController.getListingsByCategory);
+// listingsRouter.get("/category", listingsController.getListingsByCategory);
 
 //everything below requires auth
 listingsRouter.use(authMiddleware);
@@ -25,9 +25,6 @@ listingsRouter.put(
   "/:user_id/listings/:listing_id",
   listingsController.editListing
 );
-listingsRouter.delete(
-  "/delete/:listing_id",
-  listingsController.deleteListing
-);
+listingsRouter.delete("/delete/:listing_id", listingsController.deleteListing);
 
 module.exports = listingsRouter;
