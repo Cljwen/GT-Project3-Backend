@@ -1,4 +1,6 @@
-const { users, listings } = require("../db/models");
+const { users } = require("../db/models");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
   async createUser(req, res) {
@@ -57,5 +59,20 @@ module.exports = {
       },
     });
     return res.json(deleteResult);
+  },
+  async sendgridEmail(req, res) {
+    const { body: payload } = req;
+    await sgMail
+      .send({
+        ...payload,
+      })
+      .then((response) => {
+        console.log(response[0].statusCode);
+        console.log(response[0].headers);
+      })
+      .catch((error) => {
+        console.error(error.response.body.errors);
+      });
+    return res.send(req.body);
   },
 };
