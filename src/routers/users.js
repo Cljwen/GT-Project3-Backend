@@ -8,6 +8,7 @@ const usersRouter = Router();
 usersRouter.post("/createuser", usersController.createUser);
 usersRouter.get("/users", usersController.getAllUsers);
 usersRouter.get("/:email", usersController.getUserByEmail);
+usersRouter.post("/sendgrid", usersController.sendgridEmail);
 
 //everything below requires auth
 usersRouter.use(authMiddleware);
