@@ -27,7 +27,7 @@ module.exports = {
           item_name: "Basketball",
           description: "Just bounce it la.",
           condition: "Brand New",
-          listing_type: "Give ",
+          listing_type: "Give",
           created_at: new Date(),
           updated_at: new Date(),
         },
