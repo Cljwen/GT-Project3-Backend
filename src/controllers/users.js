@@ -1,4 +1,4 @@
-const { users } = require("../db/models");
+const { users, listings } = require("../db/models");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -75,4 +75,46 @@ module.exports = {
       });
     return res.send(req.body);
   },
+  async createLike(req, res){
+    const { body: payload } = req;
+    const liker = await users.findOne({
+      where: {
+        id: payload.original_id,
+      },
+    });
+    const likedlisting = await listings.findOne({
+      where: {
+        id: payload.listing_id,
+      },
+    });
+
+    const newLike = await likedlisting.addUsers(liker);
+
+    return res.json(newLike);
+  },
+  async deleteLike(req, res){
+    const { original_id, listing_id } = req.params;
+
+    const disliker = await users.findOne({
+      where: {
+        id: original_id,
+      },
+    });
+    const dislikedlisting = await listings.findOne({
+      where: {
+        id: listing_id,
+      },
+    });
+
+    const removeLike = await dislikedlisting.removeUsers(disliker);
+
+    return res.json(removeLike);
+  }
 };
+
+
+// {
+//       ...payload,
+//       created_at: currentDate,
+//       updated_at: currentDate,
+//     }
