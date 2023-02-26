@@ -15,5 +15,7 @@ usersRouter.use(authMiddleware);
 usersRouter.get("/:user_id/editprofile", usersController.getOneUser);
 usersRouter.put("/:user_id/settings", usersController.editUser);
 usersRouter.delete("/:user_id/profile", usersController.deleteUser);
+usersRouter.post("/:original_id/likes/:listing_id", usersController.createLike);
+usersRouter.delete("/:original_id/likes/:listing_id", usersController.deleteLike);
 
 module.exports = usersRouter;
